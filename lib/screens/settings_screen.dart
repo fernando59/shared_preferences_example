@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences_example/providers/theme_provider.dart';
 import 'package:shared_preferences_example/utils/shared_preferences_util.dart';
 
 import '../widgets/sidemenu_widget.dart';
@@ -34,9 +36,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   value: SharedPreferencesUtil.isDarkMode,
                   title: const Text('Dark Mode'),
                   onChanged: (value) {
-                    setState(() {
-                      SharedPreferencesUtil.isDarkMode = value;
-                    });
+                    final themProvider =
+                        Provider.of<ThemeProvider>(context, listen: false);
+                    value
+                        ? themProvider.setDarkMode()
+                        : themProvider.setLightMode();
+                    SharedPreferencesUtil.isDarkMode = value;
+                    setState(() {});
                   }),
               const Divider(),
               RadioListTile<int>(

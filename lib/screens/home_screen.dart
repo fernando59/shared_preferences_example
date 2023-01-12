@@ -21,12 +21,12 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Is Dark Mode: ${SharedPreferencesUtil.isDarkMode} '),
-            Divider(),
+            const Divider(),
             Text(
                 'Gender :  ${SharedPreferencesUtil.gender == 1 ? 'Female' : 'Male'}'),
-            Divider(),
+            const Divider(),
             Text('Name User : ${SharedPreferencesUtil.name} '),
-            Divider(),
+            const Divider(),
           ],
         ),
       ),
