@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences_example/utils/shared_preferences_util.dart';
 
 import '../widgets/sidemenu_widget.dart';
 
@@ -11,10 +12,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool isDarkMode = false;
-  int gender = 1;
-  String name = 'Fernando';
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -34,41 +31,41 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               const Divider(),
               SwitchListTile.adaptive(
-                  value: isDarkMode,
+                  value: SharedPreferencesUtil.isDarkMode,
                   title: const Text('Dark Mode'),
                   onChanged: (value) {
                     setState(() {
-                      isDarkMode = value;
+                      SharedPreferencesUtil.isDarkMode = value;
                     });
                   }),
               const Divider(),
               RadioListTile<int>(
                   value: 0,
-                  groupValue: gender,
+                  groupValue: SharedPreferencesUtil.gender,
                   title: const Text('Male'),
                   onChanged: (value) {
                     setState(() {
-                      gender = value ?? 0;
+                      SharedPreferencesUtil.gender = value ?? 0;
                     });
                   }),
               const Divider(),
               RadioListTile<int>(
                   value: 1,
-                  groupValue: gender,
+                  groupValue: SharedPreferencesUtil.gender,
                   title: const Text('Female'),
                   onChanged: (value) {
                     setState(() {
-                      gender = value ?? 1;
+                      SharedPreferencesUtil.gender = value ?? 1;
                     });
                   }),
               const Divider(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextFormField(
-                  initialValue: 'Fernando',
+                  initialValue: SharedPreferencesUtil.name,
                   onChanged: (value) {
                     setState(() {
-                      name = value;
+                      SharedPreferencesUtil.name = value;
                     });
                   },
                   decoration: const InputDecoration(
